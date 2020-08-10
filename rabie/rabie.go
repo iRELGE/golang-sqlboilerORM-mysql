@@ -1,0 +1,5 @@
+package rabie
+
+func Hi() {
+
+}
