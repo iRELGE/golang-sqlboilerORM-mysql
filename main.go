@@ -39,14 +39,14 @@ func main() {
 	dieIf(err)
 
 	fmt.Println("found user:", found.UserID)
-	found.UserID = 31
+	found.Name = "updated"
 	//update a testand boil.Whitelist() tell us whish collumn we gonna update
 	rows, err := found.Update(context.Background(), db, boil.Whitelist(models.TestColumns.Name))
 	dieIf(err)
 
 	fmt.Println("updeted row:", rows)
 	//find user by id where id equal an id supposed
-	foundAgain, err := models.Tests(qm.Where("user_id = ?", found.UserID)).One(context.Background(), db)
+	foundAgain, err := models.Tests(qm.Where(models.TestColumns.UserID+"= ?", found.UserID)).One(context.Background(), db)
 	dieIf(err)
 
 	fmt.Println("user found:", foundAgain.UserID, foundAgain.Name)
